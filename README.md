@@ -1,4 +1,4 @@
 freezing-tyrion
 ===============
 
-MP3 Tagging Program
+Mystery Project Involving MP3s and playing music.
