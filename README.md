@@ -1,4 +1,4 @@
 freezing-tyrion
 ===============
 
-MP3 Tagging Program
+MP3 Streaming Program
