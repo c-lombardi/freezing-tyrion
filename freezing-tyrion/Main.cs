@@ -29,13 +29,14 @@ namespace freezing_tyrion
             DirectoryInfo dir = new DirectoryInfo(path);
             foreach (var file in dir.GetFiles())
             {
-                if (file.Name.Contains("Lucky"))
+                if (file.Name.Contains("Crush"))
                 {
                     mp3 = file.Directory.ToString() + "\\" + file.ToString();
                 }
             }
-            song = new Tune() { path = mp3 };
-            song.Play();
+            FileStream mp3Stream = new FileStream(mp3, FileMode.Open);
+            song = new Tune() { path = mp3, stream = mp3Stream };
+            song.PlayStream();
         }
 
         private void Stopbtn_Click(object sender, EventArgs e)

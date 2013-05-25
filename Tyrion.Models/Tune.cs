@@ -19,6 +19,7 @@ namespace Tyrion.Models
         public string trackNumber { get; set; }
         public string path { get; set; }
         public Stream stream { get; set; }
+
         public void PlayStream()
         {
             this.waveOut = new WaveOut();
@@ -35,7 +36,6 @@ namespace Tyrion.Models
             this.waveOut.Play();
             this.waveOut.PlaybackStopped += StopSong;
         }
-
         private void StopSong(object sender, StoppedEventArgs e)
         {
             this.Stop();
