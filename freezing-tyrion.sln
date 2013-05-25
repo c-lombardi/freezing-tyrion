@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "freezing-tyrion", "freezing-tyrion\freezing-tyrion.csproj", "{E1473B5F-8433-400B-A8F1-F35E2CF70333}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tyrion.Models", "Tyrion.Models\Tyrion.Models.csproj", "{BE031D28-0E18-48D5-BC1E-BAF7EE93A140}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tyrion.Tests", "Tyrion.Tests\Tyrion.Tests.csproj", "{8182F2FD-88DD-497C-BC58-5AEF1EB72C67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +17,14 @@ Global
 		{E1473B5F-8433-400B-A8F1-F35E2CF70333}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1473B5F-8433-400B-A8F1-F35E2CF70333}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1473B5F-8433-400B-A8F1-F35E2CF70333}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE031D28-0E18-48D5-BC1E-BAF7EE93A140}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE031D28-0E18-48D5-BC1E-BAF7EE93A140}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE031D28-0E18-48D5-BC1E-BAF7EE93A140}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE031D28-0E18-48D5-BC1E-BAF7EE93A140}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8182F2FD-88DD-497C-BC58-5AEF1EB72C67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8182F2FD-88DD-497C-BC58-5AEF1EB72C67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8182F2FD-88DD-497C-BC58-5AEF1EB72C67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8182F2FD-88DD-497C-BC58-5AEF1EB72C67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

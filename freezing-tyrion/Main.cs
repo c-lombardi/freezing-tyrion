@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NAudio.Wave;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,21 +9,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WMPLib;
+using Tyrion.Models;
 
 namespace freezing_tyrion
 {
     public partial class Main : Form
     {
-        WMPLib.WindowsMediaPlayer wplayer;
+        private Tune song;
         public Main()
         {
-            wplayer = new WMPLib.WindowsMediaPlayer();
             InitializeComponent();
         }
 
         private void Playbtn_Click(object sender, EventArgs e)
         {
+            
             string path = @"G:\Music\Daft Punk\Random Access Memories\";
             string mp3 = "";
             DirectoryInfo dir = new DirectoryInfo(path);
@@ -33,14 +34,13 @@ namespace freezing_tyrion
                     mp3 = file.Directory.ToString() + "\\" + file.ToString();
                 }
             }
-            
-            wplayer.URL = mp3;
-            wplayer.controls.play();
+            song = new Tune() { path = mp3 };
+            song.Play();
         }
 
         private void Stopbtn_Click(object sender, EventArgs e)
         {
-            wplayer.controls.stop();
+            song.Stop();
         }
     }
 }

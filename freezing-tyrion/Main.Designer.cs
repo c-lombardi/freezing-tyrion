@@ -60,7 +60,7 @@
             this.Controls.Add(this.Stopbtn);
             this.Controls.Add(this.Playbtn);
             this.Name = "Main";
-            this.Text = "Form1";
+            this.Text = "Freezing Tyrion";
             this.ResumeLayout(false);
 
         }
