@@ -37,6 +37,7 @@ namespace freezing_tyrion
             {
                 memStream.Write(buf, 0, numRead);
             }
+            memStream.Position = 0;
             song = new Tune() { stream = memStream };
             song.PlayStream();
         }
