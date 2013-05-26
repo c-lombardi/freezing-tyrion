@@ -6,6 +6,8 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,19 +25,19 @@ namespace freezing_tyrion
 
         private void Playbtn_Click(object sender, EventArgs e)
         {
-            
-            string path = @"G:\Music\Daft Punk\Random Access Memories\";
-            string mp3 = "";
-            DirectoryInfo dir = new DirectoryInfo(path);
-            foreach (var file in dir.GetFiles())
+
+            Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            s.Connect(IPAddress.Parse("127.0.0.1"),5000);
+            NetworkStream mp3Stream = new NetworkStream(s);
+            List<byte> listOfBytes = new List<byte>();
+            MemoryStream memStream = new MemoryStream();
+            byte[] buf = new byte[8192];
+            int numRead = 0;
+            while ((numRead = mp3Stream.Read(buf, 0, buf.Length)) > 0)
             {
-                if (file.Name.Contains("Crush"))
-                {
-                    mp3 = file.Directory.ToString() + "\\" + file.ToString();
-                }
+                memStream.Write(buf, 0, numRead);
             }
-            FileStream mp3Stream = new FileStream(mp3, FileMode.Open);
-            song = new Tune() { path = mp3, stream = mp3Stream };
+            song = new Tune() { stream = memStream };
             song.PlayStream();
         }
 
