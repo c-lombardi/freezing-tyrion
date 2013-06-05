@@ -28,7 +28,6 @@ namespace freezing_tyrion
             Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             s.Connect(IPAddress.Parse("127.0.0.1"),5000);
             NetworkStream mp3Stream = new NetworkStream(s);
-            List<byte> listOfBytes = new List<byte>();
             MemoryStream memStream = new MemoryStream();
             byte[] buf = new byte[8192];
             int numRead = 0;
