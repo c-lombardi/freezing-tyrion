@@ -42,7 +42,8 @@ namespace freezing_tyrion
 
         private void Stopbtn_Click(object sender, EventArgs e)
         {
-            song.Stop();
+            if(song != null)
+                song.Stop();
         }
     }
 }

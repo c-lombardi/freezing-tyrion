@@ -15,6 +15,7 @@ namespace Tyrion.Server
         {
             string path = @"G:\Music\Daft Punk\Random Access Memories\";
             string mp3 = "";
+            MusicDirectoryTraverse(@"D:\Music");
             DirectoryInfo dir = new DirectoryInfo(path);
             foreach (var file in dir.GetFiles())
             {
@@ -43,6 +44,11 @@ namespace Tyrion.Server
                 s.Close();
                 mp3Stream.Close();
             }
+        }
+        static void MusicDirectoryTraverse(string root)
+        {
+            DirectoryInfo rootDirectory = new DirectoryInfo(root);
+            var x = rootDirectory.GetFiles("*.*", SearchOption.AllDirectories).Where(w=>w.Extension.ToLower().Contains("mp3"));
         }
     }
 }
