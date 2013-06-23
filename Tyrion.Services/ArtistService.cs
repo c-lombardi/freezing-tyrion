@@ -17,6 +17,8 @@ namespace Tyrion.Services
             var artist = (Artist)o;
             using (MusicContext db = new MusicContext())
             {
+                if (db.Artists.Any(a => a.ArtistName == artist.ArtistName))
+                    return false;
                 db.Artists.Add(artist);
                 db.SaveChanges();
                 return true;
@@ -49,9 +51,27 @@ namespace Tyrion.Services
             using (MusicContext db = new MusicContext())
             {
                 var artist = db.Artists.FirstOrDefault(fd => fd.ArtistId == id);
+                if (artist == null)
+                    return false;
                 db.Artists.Remove(artist);
                 db.SaveChanges();
                 return true;
+            }
+        }
+        public Artist AddOrGetArtist(Artist artist)
+        {
+            using (MusicContext db = new MusicContext())
+            {
+                if (db.Artists.Any(a => a.ArtistName == artist.ArtistName))
+                {
+                    return db.Artists.FirstOrDefault(fd => fd.ArtistName == artist.ArtistName);
+                }
+                else
+                {
+                    this.Add(artist);
+                    return artist;
+                }
+
             }
         }
     }
