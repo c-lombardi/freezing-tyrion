@@ -26,7 +26,7 @@ namespace Tyrion.Services
             ArtistService artistService = new ArtistService();
             Artist artist = new Artist() { ArtistName = tags.Artists };
             artist = artistService.AddOrGetArtist(artist);
-            Album album = new Album() { AlbumArtist = tags.Band, AlbumName = tags.Album };
+            Album album = new Album() { AlbumArtist = tags.Band, AlbumName = tags.Album, ArtistId = artist.ArtistId };
             AudioFile song = new AudioFile { Path = mp3Path.FullName, Title = tags.Title };
         }
         public static Id3Tag GetTags(FileInfo mp3Path)
