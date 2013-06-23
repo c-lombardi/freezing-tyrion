@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,10 @@ namespace Tyrion.Models
         {
             this.Songs = new List<AudioFile>();
         }
+
+        [Key]
         public int AlbumId { get; set; }
+
         public int AlbumName { get; set; }
         public int AlbumArtist { get; set; }
 
