@@ -15,7 +15,7 @@ namespace Tyrion.Models
         }
         public int ArtistId { get; set; }
         public string FilePath { get; set; }
-        public string Artist { get; set; }
+        public string ArtistName { get; set; }
 
         /// <summary>
         /// Albums

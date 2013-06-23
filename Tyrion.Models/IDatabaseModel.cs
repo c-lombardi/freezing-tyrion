@@ -11,6 +11,6 @@ namespace Tyrion.Models
         /// <summary>
         /// Loads all foreign references
         /// </summary>
-        public void Load();
+        void Load();
     }
 }

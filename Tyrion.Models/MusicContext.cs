@@ -10,11 +10,4 @@ namespace Tyrion.Models
     public class MusicContext : DatabaseSet
     {
     }
-
-    public abstract class DatabaseSet : DbContext
-    {
-        public DbSet<Artist> Artists { get; set; }
-        public DbSet<Album> Albums { get; set; }
-        public DbSet<AudioFile> AudioFiles { get; set; }
-    }
 }
