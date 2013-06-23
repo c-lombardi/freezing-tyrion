@@ -9,6 +9,8 @@ namespace Tyrion.Models
 {
     public abstract class DatabaseSet : DbContext
     {
+        public DatabaseSet() : base() { }
+        public DatabaseSet(string connectionString) : base(connectionString) { }
         public DbSet<Artist> Artists { get; set; }
         public DbSet<Album> Albums { get; set; }
         public DbSet<AudioFile> AudioFiles { get; set; }

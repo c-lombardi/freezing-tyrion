@@ -9,5 +9,7 @@ namespace Tyrion.Models
 {
     public class MusicContext : DatabaseSet
     {
+        public MusicContext() : base() { }
+        public MusicContext(string connectionString) : base(connectionString) { }
     }
 }
