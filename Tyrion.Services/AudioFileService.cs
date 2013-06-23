@@ -1,25 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Tyrion.Models;
-using System.Data.Entity;
-using System.Data;
 
 namespace Tyrion.Services
 {
-    public class ArtistService : ModelService
+    public class AudioFileService : ModelService
     {
-
         public bool Add(IDatabaseModel o)
         {
-            var artist = (Artist)o;
+            var song = (AudioFile)o;
             using (MusicContext db = new MusicContext())
             {
-                if (db.Artists.Any(a => a.ArtistName == artist.ArtistName))
+                if (db.AudioFiles.Any(a => a.Path == song.Path))
                     return false;
-                db.Artists.Add(artist);
+                db.AudioFiles.Add(song);
                 db.SaveChanges();
                 return true;
             }
@@ -27,10 +25,10 @@ namespace Tyrion.Services
 
         public bool Update(IDatabaseModel o)
         {
-            var artist = (Artist)o;
+            var song = (AudioFile)o;
             using (MusicContext db = new MusicContext())
             {
-                db.Entry(artist).State = EntityState.Modified;
+                db.Entry(song).State = EntityState.Modified;
                 db.SaveChanges();
                 return true;
             }
@@ -38,10 +36,10 @@ namespace Tyrion.Services
 
         public bool Remove(IDatabaseModel o)
         {
-            var artist = (Artist)o;
+            var song = (AudioFile)o;
             using (MusicContext db = new MusicContext())
             {
-                db.Artists.Remove(artist);
+                db.AudioFiles.Remove(song);
                 db.SaveChanges();
                 return true;
             }
@@ -50,26 +48,26 @@ namespace Tyrion.Services
         {
             using (MusicContext db = new MusicContext())
             {
-                var artist = db.Artists.FirstOrDefault(fd => fd.ArtistId == id);
-                if (artist == null)
+                var song = db.AudioFiles.FirstOrDefault(fd => fd.AudioFileId == id);
+                if (song == null)
                     return false;
-                db.Artists.Remove(artist);
+                db.AudioFiles.Remove(song);
                 db.SaveChanges();
                 return true;
             }
         }
-        public Artist AddOrGetArtist(Artist artist)
+        public AudioFile AddOrGetAudioFile(AudioFile song)
         {
             using (MusicContext db = new MusicContext())
             {
-                if (db.Artists.Any(a => a.ArtistName == artist.ArtistName))
+                if (db.AudioFiles.Any(a => a.Path == song.Path && a.AlbumId == song.AlbumId))
                 {
-                    return db.Artists.FirstOrDefault(fd => fd.ArtistName == artist.ArtistName);
+                    return db.AudioFiles.FirstOrDefault(fd => fd.Path == song.Path && fd.AlbumId == song.AlbumId);
                 }
                 else
                 {
-                    this.Add(artist);
-                    return artist;
+                    this.Add(song);
+                    return song;
                 }
             }
         }

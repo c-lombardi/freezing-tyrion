@@ -48,7 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlbumService.cs" />
     <Compile Include="ArtistService.cs" />
+    <Compile Include="AudioFileService.cs" />
     <Compile Include="ModelService.cs" />
     <Compile Include="MusicDirectory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

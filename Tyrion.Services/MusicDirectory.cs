@@ -22,12 +22,16 @@ namespace Tyrion.Services
         }
         public static void Index(FileInfo mp3Path)
         {
-            Id3Tag tags = MusicDirectory.GetTags(mp3Path);
             ArtistService artistService = new ArtistService();
+            AlbumService albumService = new AlbumService();
+            AudioFileService songService = new AudioFileService();
+            Id3Tag tags = MusicDirectory.GetTags(mp3Path);
             Artist artist = new Artist() { ArtistName = tags.Artists };
             artist = artistService.AddOrGetArtist(artist);
             Album album = new Album() { AlbumArtist = tags.Band, AlbumName = tags.Album, ArtistId = artist.ArtistId };
-            AudioFile song = new AudioFile { Path = mp3Path.FullName, Title = tags.Title };
+            album = albumService.AddOrGetAlbum(album);
+            AudioFile song = new AudioFile { Path = mp3Path.FullName, Title = tags.Title, AlbumId = album.AlbumId };
+            song = songService.AddOrGetAudioFile(song);
         }
         public static Id3Tag GetTags(FileInfo mp3Path)
         {
