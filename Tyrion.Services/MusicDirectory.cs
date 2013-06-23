@@ -22,11 +22,15 @@ namespace Tyrion.Services
         }
         public static void Index(FileInfo mp3Path)
         {
+            Id3Tag tags = MusicDirectory.GetTags(mp3Path);
+        }
+        public static Id3Tag GetTags(FileInfo mp3Path)
+        {
             using (var fileStream = mp3Path.OpenRead())
             {
                 using (Mp3Stream mp3 = new Mp3Stream(fileStream, Mp3Permissions.Read))
                 {
-                    var tags = mp3.GetAllTags()[0];
+                    return mp3.GetAllTags()[0];
                 }
             }
         }
