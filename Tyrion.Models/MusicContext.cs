@@ -11,5 +11,14 @@ namespace Tyrion.Models
     {
         public MusicContext() : base() { }
         public MusicContext(string connectionString) : base(connectionString) { }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            //Model Builder
+        }
+        void Dispose()
+        {
+            base.Dispose();
+        }
     }
 }

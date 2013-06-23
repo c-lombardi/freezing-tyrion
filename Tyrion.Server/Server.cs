@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using Tyrion.Models;
 
 namespace Tyrion.Server
 {
@@ -48,7 +49,7 @@ namespace Tyrion.Server
         static void MusicDirectoryTraverse(string root)
         {
             DirectoryInfo rootDirectory = new DirectoryInfo(root);
-            var x = rootDirectory.GetFiles("*.*", SearchOption.AllDirectories).Where(w=>w.Extension.ToLower().Contains("mp3"));
+            var x = rootDirectory.GetFiles("*.*", SearchOption.AllDirectories).Where(w => w.Extension.ToLower().Contains("mp3"));
         }
     }
 }
