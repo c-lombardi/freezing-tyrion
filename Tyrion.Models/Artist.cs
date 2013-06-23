@@ -18,7 +18,6 @@ namespace Tyrion.Models
         [Key]
         public int ArtistId { get; set; }
 
-        public string FilePath { get; set; }
         public string ArtistName { get; set; }
 
         /// <summary>

@@ -18,8 +18,8 @@ namespace Tyrion.Models
         [Key]
         public int AlbumId { get; set; }
 
-        public int AlbumName { get; set; }
-        public int AlbumArtist { get; set; }
+        public string AlbumName { get; set; }
+        public string AlbumArtist { get; set; }
 
         /// <summary>
         /// Artist Information

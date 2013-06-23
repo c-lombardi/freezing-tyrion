@@ -23,6 +23,9 @@ namespace Tyrion.Services
         public static void Index(FileInfo mp3Path)
         {
             Id3Tag tags = MusicDirectory.GetTags(mp3Path);
+            Artist artist = new Artist() { ArtistName = tags.Artists };
+            Album album = new Album() { AlbumArtist = tags.Band, AlbumName = tags.Album };
+            AudioFile song = new AudioFile { Path = mp3Path.FullName, Title = tags.Title };
         }
         public static Id3Tag GetTags(FileInfo mp3Path)
         {
