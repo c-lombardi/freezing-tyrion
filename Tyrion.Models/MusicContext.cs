@@ -20,5 +20,9 @@ namespace Tyrion.Models
         {
             base.Dispose();
         }
+        public override int SaveChanges()
+        {
+            return base.SaveChanges();
+        }
     }
 }
