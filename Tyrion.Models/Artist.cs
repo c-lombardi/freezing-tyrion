@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Tyrion.Models
+{
+    public class Artist : IDatabaseModel
+    {
+        public Artist()
+        {
+            this.Albums = new List<Album>();
+        }
+        public int ArtistId { get; set; }
+        public string FilePath { get; set; }
+        public string Artist { get; set; }
+
+        /// <summary>
+        /// Albums
+        /// </summary>
+        public ICollection<Album> Albums { get; set; }
+
+        public void Load()
+        {
+            using (MusicContext db = new MusicContext())
+            {
+                db.Entry(this).Collection(c => c.Albums).Load();
+            }
+        }
+    }
+}
