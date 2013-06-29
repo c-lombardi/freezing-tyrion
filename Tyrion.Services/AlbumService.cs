@@ -16,7 +16,7 @@ namespace Tyrion.Services
             var album = (Album)o;
             using (MusicContext db = new MusicContext())
             {
-                if (db.Albums.Any(a => a.AlbumName == album.AlbumName))
+                if (db.Albums.Any(a => a.AlbumName == album.AlbumName && a.ArtistId == album.ArtistId))
                     return false;
                 db.Albums.Add(album);
                 db.SaveChanges();

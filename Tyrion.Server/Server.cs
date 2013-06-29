@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Tyrion.Services;
 
@@ -16,7 +17,8 @@ namespace Tyrion.Server
         {
             string path = @"G:\Music\Daft Punk\Random Access Memories\";
             string mp3 = "";
-            MusicDirectory.IndexAudioFiles(@"D:\Music");
+            (new Thread(()=>MusicDirectory.IndexAudioFiles(@"D:\Music"))).Start();
+            //(new Thread(() => MusicDirectory.IndexAudioFiles(@"D:\Music"))).Start();
             DirectoryInfo dir = new DirectoryInfo(path);
             foreach (var file in dir.GetFiles())
             {

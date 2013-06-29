@@ -20,26 +20,50 @@ namespace Tyrion.Services
                 MusicDirectory.Index(mp3);
             }
         }
-        public static void Index(FileInfo mp3Path)
+        private static void Index(FileInfo mp3Path)
+        {
+            Id3Tag tags = MusicDirectory.GetTags(mp3Path);
+            if (tags != null)
+            {
+                MusicDirectory.Add(tags, mp3Path.FullName);
+            }
+            else
+            {
+                MusicDirectory.Add(mp3Path);
+            }
+        }
+        private static void Add(Id3Tag tags, string mp3Path)
         {
             ArtistService artistService = new ArtistService();
             AlbumService albumService = new AlbumService();
             AudioFileService songService = new AudioFileService();
-            Id3Tag tags = MusicDirectory.GetTags(mp3Path);
             Artist artist = new Artist() { ArtistName = tags.Artists };
             artist = artistService.AddOrGetArtist(artist);
             Album album = new Album() { AlbumArtist = tags.Band, AlbumName = tags.Album, ArtistId = artist.ArtistId };
             album = albumService.AddOrGetAlbum(album);
-            AudioFile song = new AudioFile { Path = mp3Path.FullName, Title = tags.Title, AlbumId = album.AlbumId };
+            AudioFile song = new AudioFile { Path = mp3Path, Title = tags.Title, AlbumId = album.AlbumId };
             song = songService.AddOrGetAudioFile(song);
         }
-        public static Id3Tag GetTags(FileInfo mp3Path)
+        private static void Add(FileInfo mp3Path)
+        {
+            AudioFileService songService = new AudioFileService();
+            var artist = Artist.GetDefaultArtist();
+            var album = Album.GetDefaultAlbum();
+            AudioFile song = new AudioFile { Path = mp3Path.FullName, Title = mp3Path.Name, AlbumId = album.AlbumId };
+            song = songService.AddOrGetAudioFile(song);
+        }
+        private static Id3Tag GetTags(FileInfo mp3Path)
         {
             using (var fileStream = mp3Path.OpenRead())
             {
                 using (Mp3Stream mp3 = new Mp3Stream(fileStream, Mp3Permissions.Read))
                 {
-                    return mp3.GetAllTags()[0];
+                    Id3Tag tags = null;
+                    if (mp3.HasTags)
+                    {
+                        tags = mp3.GetAllTags()[0];
+                    }
+                    return tags;
                 }
             }
         }

@@ -15,7 +15,7 @@ namespace Tyrion.Services
             var song = (AudioFile)o;
             using (MusicContext db = new MusicContext())
             {
-                if (db.AudioFiles.Any(a => a.Path == song.Path))
+                if (db.AudioFiles.Any(a => a.Path == song.Path && a.AlbumId == song.AlbumId))
                     return false;
                 db.AudioFiles.Add(song);
                 db.SaveChanges();

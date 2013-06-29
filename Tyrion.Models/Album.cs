@@ -41,5 +41,23 @@ namespace Tyrion.Models
                 db.Entry(this).Collection(c => c.Songs).Load();
             }
         }
+        public static Album GetDefaultAlbum()
+        {
+            using (MusicContext db = new MusicContext())
+            {
+                if (db.Albums.Any(a => a.AlbumName == "Unknown"))
+                {
+                    return db.Albums.FirstOrDefault(fd => fd.AlbumName == "Unknown");
+                }
+                else
+                {
+                    var artist = Artist.GetDefaultArtist();
+                    Album album = new Album() { AlbumName = "Unknown", AlbumArtist = "Unknown", ArtistId = artist.ArtistId };
+                    db.Albums.Add(album);
+                    db.SaveChanges();
+                    return album;
+                }
+            }
+        }
     }
 }
