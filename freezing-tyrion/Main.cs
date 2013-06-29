@@ -46,5 +46,25 @@ namespace freezing_tyrion
         {
             song.Stop();
         }
+
+        private void prefrencesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Preferences pref = new Preferences();
+            Main.ActiveForm.Visible = false;
+            pref.ShowDialog();
+        }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                this.WindowState = FormWindowState.Minimized;
+            } 
+        }
     }
 }
