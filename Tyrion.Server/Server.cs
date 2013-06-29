@@ -15,18 +15,8 @@ namespace Tyrion.Server
     {
         static void Main(string[] args)
         {
-            string path = @"G:\Music\Daft Punk\Random Access Memories\";
             string mp3 = "";
-            (new Thread(()=>MusicDirectory.IndexAudioFiles(@"D:\Music"))).Start();
-            //(new Thread(() => MusicDirectory.IndexAudioFiles(@"D:\Music"))).Start();
-            DirectoryInfo dir = new DirectoryInfo(path);
-            foreach (var file in dir.GetFiles())
-            {
-                if (file.Name.Contains("Crush"))
-                {
-                    mp3 = file.Directory.ToString() + "\\" + file.ToString();
-                }
-            }
+            //(new Thread(()=>MusicDirectory.IndexAudioFiles(@"D:\Music"))).Start();
             Socket listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             IPAddress address = IPAddress.Parse("127.0.0.1");
             IPEndPoint localEndpoint = new IPEndPoint(address, 5000);
@@ -35,11 +25,19 @@ namespace Tyrion.Server
             Console.WriteLine("Listening");
             while (true)
             {
-                FileStream mp3Stream = new FileStream(mp3, FileMode.Open);
+                
                 Socket s = listener.Accept();
+                NetworkStream n = new NetworkStream(s);
                 Console.WriteLine("Accepted");
                 byte[] buf = new byte[8192];
+                n.Read(buf, 0, buf.Length);
+                string fileId = System.Text.Encoding.UTF8.GetString(buf);
+                int id = int.Parse(fileId);
+                Console.WriteLine(id);
+                AudioFileService fileService = new AudioFileService();
+                mp3 = fileService.GetPathById(id);
                 int numberRead = 0;
+                FileStream mp3Stream = new FileStream(mp3, FileMode.Open);
                 while ((numberRead = mp3Stream.Read(buf, 0, buf.Length)) > 0)
                 {
                     s.Send(buf, 0, numberRead, SocketFlags.None);

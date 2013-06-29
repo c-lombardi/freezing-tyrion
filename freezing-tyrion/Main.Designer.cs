@@ -30,6 +30,7 @@
         {
             this.Playbtn = new System.Windows.Forms.Button();
             this.Stopbtn = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // Playbtn
@@ -52,16 +53,25 @@
             this.Stopbtn.UseVisualStyleBackColor = true;
             this.Stopbtn.Click += new System.EventHandler(this.Stopbtn_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(80, 39);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 2;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(446, 293);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.Stopbtn);
             this.Controls.Add(this.Playbtn);
             this.Name = "Main";
             this.Text = "Freezing Tyrion";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -69,6 +79,7 @@
 
         private System.Windows.Forms.Button Playbtn;
         private System.Windows.Forms.Button Stopbtn;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

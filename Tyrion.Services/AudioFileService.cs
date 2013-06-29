@@ -71,5 +71,12 @@ namespace Tyrion.Services
                 }
             }
         }
+        public string GetPathById(int id)
+        {
+            using (MusicContext db = new MusicContext())
+            {
+                return db.AudioFiles.Where(w => w.AudioFileId == id).Select(s => s.Path).FirstOrDefault();
+            }
+        }
     }
 }
