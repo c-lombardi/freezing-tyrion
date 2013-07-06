@@ -11,6 +11,10 @@ namespace Tyrion.Services
 {
     public class MusicDirectory
     {
+        /// <summary>
+        /// Indexes a bunch of MP3 Files
+        /// </summary>
+        /// <param name="root">Music Directory Location</param>
         public static void IndexAudioFiles(string root)
         {
             DirectoryInfo rootDirectory = new DirectoryInfo(root);
@@ -20,6 +24,10 @@ namespace Tyrion.Services
                 MusicDirectory.Index(mp3);
             }
         }
+        /// <summary>
+        /// Indexes an MP3 File
+        /// </summary>
+        /// <param name="mp3Path">Path to the MP3</param>
         private static void Index(FileInfo mp3Path)
         {
             Id3Tag tags = MusicDirectory.GetTags(mp3Path);

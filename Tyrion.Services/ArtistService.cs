@@ -11,7 +11,11 @@ namespace Tyrion.Services
 {
     public class ArtistService : IModelService
     {
-
+        /// <summary>
+        /// Adds an Object
+        /// </summary>
+        /// <param name="o">IDatabaseModel to Add</param>
+        /// <returns>True if Successful</returns>
         public bool Add(IDatabaseModel o)
         {
             var artist = (Artist)o;
@@ -24,7 +28,11 @@ namespace Tyrion.Services
                 return true;
             }
         }
-
+        /// <summary>
+        /// Updates an Object
+        /// </summary>
+        /// <param name="o">Object to Update</param>
+        /// <returns>True if Successful</returns>
         public bool Update(IDatabaseModel o)
         {
             var artist = (Artist)o;
@@ -35,7 +43,11 @@ namespace Tyrion.Services
                 return true;
             }
         }
-
+        /// <summary>
+        /// Removes an Artist Object
+        /// </summary>
+        /// <param name="o">Object to Remove</param>
+        /// <returns>True if successful</returns>
         public bool Remove(IDatabaseModel o)
         {
             var artist = (Artist)o;
@@ -46,6 +58,11 @@ namespace Tyrion.Services
                 return true;
             }
         }
+        /// <summary>
+        /// Remove an Artist By Id
+        /// </summary>
+        /// <param name="id">Id of Artist</param>
+        /// <returns>True If Successful</returns>
         public bool Remove(int id)
         {
             using (MusicContext db = new MusicContext())
@@ -58,6 +75,11 @@ namespace Tyrion.Services
                 return true;
             }
         }
+        /// <summary>
+        /// Add or Gets an Artist
+        /// </summary>
+        /// <param name="obj">Artist to add or get</param>
+        /// <returns>Artist Id</returns>
         public int AddOrGet(IDatabaseModel obj)
         {
             Artist artist = (Artist)obj;

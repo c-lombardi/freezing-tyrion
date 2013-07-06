@@ -10,6 +10,11 @@ namespace Tyrion.Services
 {
     public class AudioFileService : IModelService
     {
+        /// <summary>
+        /// Adds an Object
+        /// </summary>
+        /// <param name="o">IDatabaseModel to Add</param>
+        /// <returns>True if Successful</returns>
         public bool Add(IDatabaseModel o)
         {
             var song = (AudioFile)o;
@@ -22,7 +27,11 @@ namespace Tyrion.Services
                 return true;
             }
         }
-
+        /// <summary>
+        /// Updates an Object
+        /// </summary>
+        /// <param name="o">Object to Update</param>
+        /// <returns>True if Successful</returns>
         public bool Update(IDatabaseModel o)
         {
             var song = (AudioFile)o;
@@ -33,7 +42,11 @@ namespace Tyrion.Services
                 return true;
             }
         }
-
+        /// <summary>
+        /// Removes an AudioFile Object
+        /// </summary>
+        /// <param name="o">Object to Remove</param>
+        /// <returns>True if successful</returns>
         public bool Remove(IDatabaseModel o)
         {
             var song = (AudioFile)o;
@@ -44,6 +57,11 @@ namespace Tyrion.Services
                 return true;
             }
         }
+        /// <summary>
+        /// Remove an AudioFile By Id
+        /// </summary>
+        /// <param name="id">Id of AudioFile</param>
+        /// <returns>True If Successful</returns>
         public bool Remove(int id)
         {
             using (MusicContext db = new MusicContext())
@@ -56,6 +74,11 @@ namespace Tyrion.Services
                 return true;
             }
         }
+        /// <summary>
+        /// Add or Gets an AudioFile
+        /// </summary>
+        /// <param name="obj">AudioFile to add or get</param>
+        /// <returns>AudioFile Id</returns>
         public int AddOrGet(IDatabaseModel obj)
         {
             AudioFile song = (AudioFile)obj;
@@ -72,6 +95,11 @@ namespace Tyrion.Services
                 }
             }
         }
+        /// <summary>
+        /// Gets a AudioFile Path by Id
+        /// </summary>
+        /// <param name="id">Id of AudioFile</param>
+        /// <returns>AudioFilePath</returns>
         public string GetPathById(int id)
         {
             using (MusicContext db = new MusicContext())
