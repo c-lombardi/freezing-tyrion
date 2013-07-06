@@ -16,7 +16,7 @@ namespace Tyrion.Server
         static void Main(string[] args)
         {
             string mp3 = "";
-            //(new Thread(()=>MusicDirectory.IndexAudioFiles(@"D:\Music"))).Start();
+            ThreadPool.QueueUserWorkItem((state) => { MusicDirectory.IndexAudioFiles(@"D:\Music"); });
             Socket listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             IPAddress address = IPAddress.Parse("127.0.0.1");
             IPEndPoint localEndpoint = new IPEndPoint(address, 5000);

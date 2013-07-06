@@ -54,6 +54,10 @@
     <Compile Include="DatabaseSet.cs" />
     <Compile Include="Helper\Tune.cs" />
     <Compile Include="IDatabaseModel.cs" />
+    <Compile Include="Migrations\201307061812390_new.cs" />
+    <Compile Include="Migrations\201307061812390_new.Designer.cs">
+      <DependentUpon>201307061812390_new.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MusicContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -61,6 +65,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201307061812390_new.resx">
+      <DependentUpon>201307061812390_new.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
