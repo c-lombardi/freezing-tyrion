@@ -1,5 +1,4 @@
-﻿using NAudio.Wave;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,7 +28,6 @@ namespace freezing_tyrion
             Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             s.Connect(IPAddress.Parse("127.0.0.1"),5000);
             NetworkStream mp3Stream = new NetworkStream(s);
-            List<byte> listOfBytes = new List<byte>();
             MemoryStream memStream = new MemoryStream();
             byte[] buf = new byte[8192];
             int numRead = 0;
@@ -44,7 +42,8 @@ namespace freezing_tyrion
 
         private void Stopbtn_Click(object sender, EventArgs e)
         {
-            song.Stop();
+            if(song != null)
+                song.Stop();
         }
     }
 }
