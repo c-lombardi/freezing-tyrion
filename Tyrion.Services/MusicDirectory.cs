@@ -76,12 +76,15 @@ namespace Tyrion.Services
             {
                 using (Mp3Stream mp3 = new Mp3Stream(fileStream, Mp3Permissions.Read))
                 {
-                    Id3Tag tags = null;
+                    Id3Tag[] tags = null;
+                    Id3Tag tag = null;
                     if (mp3.HasTags)
                     {
-                        tags = mp3.GetAllTags()[0];
+                        tags = mp3.GetAllTags();
+                        if (tags.Count() > 0)
+                            tag = tags[0];
                     }
-                    return tags;
+                    return tag;
                 }
             }
         }
