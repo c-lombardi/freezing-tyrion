@@ -30,6 +30,7 @@
         {
             this.Playbtn = new System.Windows.Forms.Button();
             this.Stopbtn = new System.Windows.Forms.Button();
+<<<<<<< HEAD
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -37,6 +38,9 @@
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
+=======
+            this.textBox1 = new System.Windows.Forms.TextBox();
+>>>>>>> master
             this.SuspendLayout();
             // 
             // Playbtn
@@ -59,6 +63,7 @@
             this.Stopbtn.UseVisualStyleBackColor = true;
             this.Stopbtn.Click += new System.EventHandler(this.Stopbtn_Click);
             // 
+<<<<<<< HEAD
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -99,13 +104,26 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(546, 420);
             this.listBox1.TabIndex = 5;
+=======
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(80, 39);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 2;
+>>>>>>> master
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< HEAD
             this.ClientSize = new System.Drawing.Size(807, 531);
             this.Controls.Add(this.listBox1);
+=======
+            this.ClientSize = new System.Drawing.Size(446, 293);
+            this.Controls.Add(this.textBox1);
+>>>>>>> master
             this.Controls.Add(this.Stopbtn);
             this.Controls.Add(this.Playbtn);
             this.Controls.Add(this.menuStrip1);
@@ -123,12 +141,16 @@
 
         private System.Windows.Forms.Button Playbtn;
         private System.Windows.Forms.Button Stopbtn;
+<<<<<<< HEAD
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
         private System.Windows.Forms.ListBox listBox1;
+=======
+        private System.Windows.Forms.TextBox textBox1;
+>>>>>>> master
     }
 }
 

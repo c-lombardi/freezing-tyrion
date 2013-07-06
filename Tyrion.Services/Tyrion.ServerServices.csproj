@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{399A9CB0-FE1C-4FCB-B6EE-CF298A171230}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{16532EC7-29FA-435B-8A44-A498692CF4C4}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tyrion.Server</RootNamespace>
-    <AssemblyName>Tyrion.Server</AssemblyName>
+    <RootNamespace>Tyrion.Services</RootNamespace>
+    <AssemblyName>Tyrion.Services</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -34,6 +32,9 @@
   <ItemGroup>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Id3">
+      <HintPath>..\packages\ID3.0.3.0\lib\net40\Id3.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -46,22 +47,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Server.cs" />
+    <Compile Include="AlbumService.cs" />
+    <Compile Include="ArtistService.cs" />
+    <Compile Include="AudioFileService.cs" />
+    <Compile Include="IModelService.cs" />
+    <Compile Include="MusicDirectory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Tyrion.Models\Tyrion.Models.csproj">
       <Project>{be031d28-0e18-48d5-bc1e-baf7ee93a140}</Project>
       <Name>Tyrion.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Tyrion.Services\Tyrion.ServerServices.csproj">
-      <Project>{16532ec7-29fa-435b-8a44-a498692cf4c4}</Project>
-      <Name>Tyrion.ServerServices</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
