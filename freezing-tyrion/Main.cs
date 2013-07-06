@@ -45,5 +45,10 @@ namespace freezing_tyrion
             if(song != null)
                 song.Stop();
         }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
