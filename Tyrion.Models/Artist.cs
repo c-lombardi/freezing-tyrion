@@ -32,13 +32,13 @@ namespace Tyrion.Models
                 db.Entry(this).Collection(c => c.Albums).Load();
             }
         }
-        public static Artist GetDefaultArtist()
+        public static int GetDefaultId()
         {
             using (MusicContext db = new MusicContext())
             {
                 if (db.Artists.Any(a => a.ArtistName == "Unknown"))
                 {
-                    return db.Artists.FirstOrDefault(fd => fd.ArtistName == "Unknown");
+                    return db.Artists.Where(w => w.ArtistName == "Unknown").Select(s=>s.ArtistId).FirstOrDefault();
                 }
                 else
                 {
@@ -48,7 +48,7 @@ namespace Tyrion.Models
                     };
                     db.Artists.Add(artist);
                     db.SaveChanges();
-                    return artist;
+                    return artist.ArtistId;
                 }
             }
         }

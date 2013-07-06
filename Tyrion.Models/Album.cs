@@ -41,21 +41,21 @@ namespace Tyrion.Models
                 db.Entry(this).Collection(c => c.Songs).Load();
             }
         }
-        public static Album GetDefaultAlbum()
+        public static int GetDefaultId()
         {
             using (MusicContext db = new MusicContext())
             {
                 if (db.Albums.Any(a => a.AlbumName == "Unknown"))
                 {
-                    return db.Albums.FirstOrDefault(fd => fd.AlbumName == "Unknown");
+                    return db.Albums.Where(w => w.AlbumName == "Unknown").Select(s=>s.AlbumId).FirstOrDefault();
                 }
                 else
                 {
-                    var artist = Artist.GetDefaultArtist();
-                    Album album = new Album() { AlbumName = "Unknown", AlbumArtist = "Unknown", ArtistId = artist.ArtistId };
+                    var artistId = Artist.GetDefaultId();
+                    Album album = new Album() { AlbumName = "Unknown", AlbumArtist = "Unknown", ArtistId = artistId };
                     db.Albums.Add(album);
                     db.SaveChanges();
-                    return album;
+                    return album.AlbumId;
                 }
             }
         }

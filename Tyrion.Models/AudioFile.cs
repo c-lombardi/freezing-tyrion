@@ -22,7 +22,10 @@ namespace Tyrion.Models
         public int AlbumId { get; set; }
         [ForeignKey("AlbumId")]
         public Album Album { get; set; }
-
+        public static int GetDefaultId()
+        {
+            return 0;
+        }
         public void Load()
         {
             using (MusicContext db = new MusicContext())

@@ -29,10 +29,10 @@ namespace Tyrion.Services
             }
             else
             {
-                MusicDirectory.Add(mp3Path, new AudioFileService());
+                MusicDirectory.Add(mp3Path.Name, mp3Path.FullName, new AudioFileService(), Album.GetDefaultId());
             }
         }
-        private static bool Add(Id3Tag tags, string mp3Path, IModelService artistService, IModelService albumService, IModelService songService)
+        public static bool Add(Id3Tag tags, string mp3Path, IModelService artistService, IModelService albumService, IModelService songService)
         {
             Artist artist = new Artist() { ArtistName = tags.Artists };
             int artistId = artistService.AddOrGet(artist);
@@ -40,17 +40,15 @@ namespace Tyrion.Services
             int albumId = albumService.AddOrGet(album);
             AudioFile song = new AudioFile { Path = mp3Path, Title = tags.Title, AlbumId = albumId };
             int songId = songService.AddOrGet(song);
-            return songId > 0;
+            return songId > 0 && albumId > 0 && artistId > 0;
         }
-        private static bool Add(FileInfo mp3Path, IModelService songService)
+        public static bool Add(string fileName, string mp3Path, IModelService songService, int albumId)
         {
-            var artist = Artist.GetDefaultArtist();
-            var album = Album.GetDefaultAlbum();
-            AudioFile song = new AudioFile { Path = mp3Path.FullName, Title = mp3Path.Name, AlbumId = album.AlbumId };
+            AudioFile song = new AudioFile { Path = mp3Path, Title = fileName, AlbumId = albumId };
             int songId = songService.AddOrGet(song);
             return songId > 0;
         }
-        private static Id3Tag GetTags(FileInfo mp3Path)
+        public static Id3Tag GetTags(FileInfo mp3Path)
         {
             using (var fileStream = mp3Path.OpenRead())
             {
