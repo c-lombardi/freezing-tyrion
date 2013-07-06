@@ -21,12 +21,14 @@ namespace Tyrion.Server.Forms
         {
             PortNumTxt.Enabled = false;
         }
-        private void PortNumTxt_TextChanged(object sender, EventArgs e)
+        private void PortNumTxt_Digits(object sender, KeyPressEventArgs e)
         {
-            this.PortNumTxt.KeyPress += new KeyPressEventHandler(DisableTxt);
-        }
-        private void DisableTxt(object sender, System.Windows.Forms.KeyPressEventArgs e)
-        {
+            if (!char.IsControl(e.KeyChar)
+            && !char.IsDigit(e.KeyChar)
+            && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
             if (e.KeyChar == (char)13)
             {
                 PortNumTxt.Enabled = false;
@@ -54,6 +56,11 @@ namespace Tyrion.Server.Forms
         private void SaveBtn_Click_1(object sender, EventArgs e)
         {
             PortNumTxt.Enabled = false;
+        }
+
+        private void PortNumTxt_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

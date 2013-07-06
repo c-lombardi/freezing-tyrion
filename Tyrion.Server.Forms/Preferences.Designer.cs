@@ -106,10 +106,13 @@
             // 
             this.PortNumTxt.Enabled = false;
             this.PortNumTxt.Location = new System.Drawing.Point(191, 109);
+            this.PortNumTxt.MaxLength = 5;
             this.PortNumTxt.Name = "PortNumTxt";
             this.PortNumTxt.Size = new System.Drawing.Size(203, 20);
             this.PortNumTxt.TabIndex = 7;
             this.PortNumTxt.Text = "5000";
+            this.PortNumTxt.TextChanged += new System.EventHandler(this.PortNumTxt_TextChanged);
+            this.PortNumTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PortNumTxt_Digits);
             // 
             // Preferences
             // 
