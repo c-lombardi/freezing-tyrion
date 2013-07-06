@@ -8,7 +8,7 @@ using Tyrion.Models;
 
 namespace Tyrion.Services
 {
-    public class AudioFileService : ModelService
+    public class AudioFileService : IModelService
     {
         public bool Add(IDatabaseModel o)
         {
@@ -56,18 +56,19 @@ namespace Tyrion.Services
                 return true;
             }
         }
-        public AudioFile AddOrGetAudioFile(AudioFile song)
+        public int AddOrGet(IDatabaseModel obj)
         {
+            AudioFile song = (AudioFile)obj;
             using (MusicContext db = new MusicContext())
             {
                 if (db.AudioFiles.Any(a => a.Path == song.Path && a.AlbumId == song.AlbumId))
                 {
-                    return db.AudioFiles.FirstOrDefault(fd => fd.Path == song.Path && fd.AlbumId == song.AlbumId);
+                    return db.AudioFiles.Where(w => w.Path == song.Path && w.AlbumId == song.AlbumId).Select(s=>s.AudioFileId).FirstOrDefault();
                 }
                 else
                 {
                     this.Add(song);
-                    return song;
+                    return song.AudioFileId;
                 }
             }
         }

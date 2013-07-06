@@ -25,32 +25,30 @@ namespace Tyrion.Services
             Id3Tag tags = MusicDirectory.GetTags(mp3Path);
             if (tags != null)
             {
-                MusicDirectory.Add(tags, mp3Path.FullName);
+                MusicDirectory.Add(tags, mp3Path.FullName, new ArtistService(),new AlbumService(),new AudioFileService());
             }
             else
             {
-                MusicDirectory.Add(mp3Path);
+                MusicDirectory.Add(mp3Path, new AudioFileService());
             }
         }
-        private static void Add(Id3Tag tags, string mp3Path)
+        private static bool Add(Id3Tag tags, string mp3Path, IModelService artistService, IModelService albumService, IModelService songService)
         {
-            ArtistService artistService = new ArtistService();
-            AlbumService albumService = new AlbumService();
-            AudioFileService songService = new AudioFileService();
             Artist artist = new Artist() { ArtistName = tags.Artists };
-            artist = artistService.AddOrGetArtist(artist);
-            Album album = new Album() { AlbumArtist = tags.Band, AlbumName = tags.Album, ArtistId = artist.ArtistId };
-            album = albumService.AddOrGetAlbum(album);
-            AudioFile song = new AudioFile { Path = mp3Path, Title = tags.Title, AlbumId = album.AlbumId };
-            song = songService.AddOrGetAudioFile(song);
+            int artistId = artistService.AddOrGet(artist);
+            Album album = new Album() { AlbumArtist = tags.Band, AlbumName = tags.Album, ArtistId = artistId };
+            int albumId = albumService.AddOrGet(album);
+            AudioFile song = new AudioFile { Path = mp3Path, Title = tags.Title, AlbumId = albumId };
+            int songId = songService.AddOrGet(song);
+            return songId > 0;
         }
-        private static void Add(FileInfo mp3Path)
+        private static bool Add(FileInfo mp3Path, IModelService songService)
         {
-            AudioFileService songService = new AudioFileService();
             var artist = Artist.GetDefaultArtist();
             var album = Album.GetDefaultAlbum();
             AudioFile song = new AudioFile { Path = mp3Path.FullName, Title = mp3Path.Name, AlbumId = album.AlbumId };
-            song = songService.AddOrGetAudioFile(song);
+            int songId = songService.AddOrGet(song);
+            return songId > 0;
         }
         private static Id3Tag GetTags(FileInfo mp3Path)
         {

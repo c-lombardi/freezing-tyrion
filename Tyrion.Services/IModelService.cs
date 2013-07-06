@@ -7,11 +7,12 @@ using Tyrion.Models;
 
 namespace Tyrion.Services
 {
-    public interface ModelService
+    public interface IModelService
     {
         bool Add(IDatabaseModel o);
         bool Update(IDatabaseModel o);
         bool Remove(IDatabaseModel o);
         bool Remove(int id);
+        int AddOrGet(IDatabaseModel obj);
     }
 }

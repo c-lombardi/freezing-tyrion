@@ -9,7 +9,7 @@ using System.Data;
 
 namespace Tyrion.Services
 {
-    public class ArtistService : ModelService
+    public class ArtistService : IModelService
     {
 
         public bool Add(IDatabaseModel o)
@@ -58,18 +58,19 @@ namespace Tyrion.Services
                 return true;
             }
         }
-        public Artist AddOrGetArtist(Artist artist)
+        public int AddOrGet(IDatabaseModel obj)
         {
+            Artist artist = (Artist)obj;
             using (MusicContext db = new MusicContext())
             {
                 if (db.Artists.Any(a => a.ArtistName == artist.ArtistName))
                 {
-                    return db.Artists.FirstOrDefault(fd => fd.ArtistName == artist.ArtistName);
+                    return db.Artists.Where(w => w.ArtistName == artist.ArtistName).Select(s=>s.ArtistId).FirstOrDefault();
                 }
                 else
                 {
                     this.Add(artist);
-                    return artist;
+                    return artist.ArtistId;
                 }
             }
         }

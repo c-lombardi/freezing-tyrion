@@ -9,7 +9,7 @@ using System.Data.Entity;
 
 namespace Tyrion.Services
 {
-    public class AlbumService : ModelService
+    public class AlbumService : IModelService
     {
         public bool Add(IDatabaseModel o)
         {
@@ -57,18 +57,19 @@ namespace Tyrion.Services
                 return true;
             }
         }
-        public Album AddOrGetAlbum(Album album)
+        public int AddOrGet(IDatabaseModel obj)
         {
+            Album album = (Album)obj;
             using (MusicContext db = new MusicContext())
             {
                 if (db.Albums.Any(a => a.AlbumName == album.AlbumName && a.ArtistId == album.ArtistId))
                 {
-                    return db.Albums.FirstOrDefault(fd => fd.AlbumName == album.AlbumName && fd.ArtistId == album.ArtistId);
+                    return db.Albums.Where(w => w.AlbumName == album.AlbumName && w.ArtistId == album.ArtistId).Select(s=>s.AlbumId).FirstOrDefault();
                 }
                 else
                 {
                     this.Add(album);
-                    return album;
+                    return album.AlbumId;
                 }
             }
         }
