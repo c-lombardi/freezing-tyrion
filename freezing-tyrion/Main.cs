@@ -50,5 +50,12 @@ namespace freezing_tyrion
         {
             Application.Exit();
         }
+
+        private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Preferences pref = new Preferences();
+            Main.ActiveForm.Visible = false;
+            pref.ShowDialog();
+        }
     }
 }
