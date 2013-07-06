@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Id3">
+      <HintPath>..\packages\ID3.0.3.0\lib\net40\Id3.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -50,8 +53,22 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="ModelServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MusicDirectoryTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tyrion.Models\Tyrion.Models.csproj">
+      <Project>{be031d28-0e18-48d5-bc1e-baf7ee93a140}</Project>
+      <Name>Tyrion.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tyrion.Services\Tyrion.ServerServices.csproj">
+      <Project>{16532ec7-29fa-435b-8a44-a498692cf4c4}</Project>
+      <Name>Tyrion.ServerServices</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
