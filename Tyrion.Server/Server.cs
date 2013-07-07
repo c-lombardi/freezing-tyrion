@@ -9,7 +9,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Tyrion.Services;
 
->>>>>>> master
 namespace Tyrion.Server
 {
     class Server
@@ -17,7 +16,7 @@ namespace Tyrion.Server
         static void Main(string[] args)
         {
             string mp3 = "";
-            ThreadPool.QueueUserWorkItem((state) => { MusicDirectory.IndexAudioFiles(@"D:\Music"); });
+            ThreadPool.QueueUserWorkItem((state) => { MusicDirectory.IndexAudioFiles(@"E:\Music"); });
             Socket listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             IPAddress address = IPAddress.Parse("127.0.0.1");
             IPEndPoint localEndpoint = new IPEndPoint(address, 5000);
